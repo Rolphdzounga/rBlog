@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RBlog</title>
+  <%= stylesheet_link_tag    'admin/application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'admin/application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+
+
+</head>
+<body>
+	
+
+<nav class="nav navbar-default">
+<div class="container-fluid">
+<div class="navbar-header"><a class="navbar-brand" href="<%= admin_posts_path%>"><h1>rBlog<span>/Manager/</span></h1></a></div>
+<div class="collapse navbar-collapse">
+	<ul class="nav navbar-nav">
+		<li class="<%= params[:controller] == 'admin/posts' ? 'active' : '' %>">
+      <%= link_to "Posts" , admin_posts_path %></li>
+
+		
+    <li class="<%= params[:controller] == 'admin/categories' ? 'active' : '' %>">
+          <%= link_to "Categories" , admin_categories_path %></li>
+
+		  <li class="<%= params[:controller] == 'admin/users' ? 'active' : '' %>">
+              <%= link_to "Users" , admin_users_path %></li>
+
+	</ul>
+	
+  <%= render 'partials/admin/search'  %>
+
+
+</div>
+</div>
+</nav>
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="well">
+        <div class="pull-right" id="user_nav">
+          <% if current_user %>
+            Logged in as <%= current_user.email %>
+            <%= link_to "Deconnexion" , admin_logout_path %>
+          <%else%>
+            <%= link_to "Connexion" , admin_login_path %>
+          <%end%>
+        </div>
+        
+          <%= render 'partials/flash' %>
+
+          <%= yield %>
+
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+<%= render 'partials/admin/footer' %>
+</body>
+</html>

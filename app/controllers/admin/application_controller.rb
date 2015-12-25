@@ -1,0 +1,33 @@
+class Admin::ApplicationController < ActionController::Base
+  # Prevent CSRF attacks by raising an exception.
+  # For APIs, you may want to use :null_session instead.
+  protect_from_forgery with: :exception
+  layout 'admin/application'
+
+  helper_method :current_user , :logged_in? , :require_user
+
+
+  def current_user
+     @current_user ||=Usr.find(session[:user_id]) if session[:user_id]
+  end
+
+  def logged_in?
+    !!current_user
+  end
+
+  def require_user
+    if !logged_in?
+      flash[:alert] = "Vous de vez etre connecté pour effectuer cette action..."
+      redirect_to root_path
+    end
+  end
+
+  private
+  	
+
+  	def verify_logged_in
+  		unless current_user
+  			redirect_to admin_login_path
+  		end
+  	end
+end

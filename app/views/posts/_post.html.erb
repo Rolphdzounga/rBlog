@@ -1,0 +1,25 @@
+<div id="posts-index">
+	<% if obj.exists? %>
+	<% obj.each_slice(2) do |p| %>
+		<div class="row">
+			<% p.each do |p| %>
+			<div class="col-md-6">
+				<div class="post">
+					<%= image_tag p.image.url , width:'100%'  %>
+					<div class="post-content">
+						<h3><%= p.title %></h3>
+						<small>Posted by <%= p.user.name %> <br> On <%= p.created_at.to_time.strftime('%e %B at %l:%M %p') %>
+						</small>
+						<br>
+						<%= raw p.body.truncate(200) %>
+						<%= link_to "Lire plus" , post_path(p) , class:'btn btn_primary' %>
+					</div>
+				</div>
+			</div>
+			<%end%>
+		</div>
+		<%end%>
+		<% else %>
+		<p>Pas encore de post pour cette categorie</p>
+		<%end%>
+	</div>	

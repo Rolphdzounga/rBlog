@@ -1,0 +1,19 @@
+
+$primary-color:$blue;
+
+.form-group{
+	display: block;
+}
+
+.search-form .form-group{
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0;
+}
+
+footer{
+	a{
+		color:$pink;
+	}
+}
+

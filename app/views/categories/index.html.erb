@@ -1,0 +1,19 @@
+<h2 class="page-header">Liste des Categories  
+</h2>
+<%if @categories.exists? %>
+<table class="table table-striped">
+	<tr>
+		<th>Category Title</th>
+		
+	</tr>
+	<% @categories.each do |c| %>
+	<tr>
+		<td><%=c.name%></td>
+		
+	</tr>
+	<%end%>
+</table>
+
+<%else%>
+	<p>Aucune Categorie</p>
+<%end%>

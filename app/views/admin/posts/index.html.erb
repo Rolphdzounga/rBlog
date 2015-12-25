@@ -1,0 +1,33 @@
+
+<h2 class="page-header">Manage Posts  
+<%=  link_to "Add New" , new_admin_post_path , class:"btn btn-success pull-right" %>
+</h2>
+<%if @posts.exists? %>
+<table class="table table-striped">
+	<tr>
+		<th>Posts Title</th>
+		<th>Posts Category</th>
+		<th>Created Date</th>
+		<th>Actions</th>
+	</tr>
+	<% @posts.each do |c| %>
+	<tr>
+		<td><%=c.title%></td>
+		<td><%=c.category.name%></td>
+		<td><%= c.created_at.to_time.strftime('%e %B à %l:%M %p')%></td>
+	<% if logged_in? && (c.usr == current_user || c.user == current_user) %>			
+		<td>
+			<%= link_to "Edit" , edit_admin_post_path(c) , class:'btn btn-primary' %>  
+		<%= link_to "Delete" , admin_post_path(c) , class:'btn btn-danger' , method: :delete , data: {confirm:"Confirmez cette suppression..."} %></td>
+	<%end%>
+		
+	</tr>
+	<%end%>
+</table>
+<%= will_paginate @posts %>
+<%else%>
+	<p>Aucun Post</p>
+<%end%>
+				
+
+

@@ -1,0 +1,13 @@
+<h2>Add New Category</h2>
+
+<%= form_for [:admin, @category] do |f| %>
+<% if @category.errors.any? %>
+	<% @category.errors.full_messages.each do |m| %>
+		<div class="alert alert-danger"><%= m %></div>
+	<%end%> <!-- end Do m -->
+<%end%> <!-- end If -->
+<div class="form-group"><%= f.label :name %><%= f.text_field :name,class:'form-control' %></div>
+<br>
+<%= f.submit "Submit" , class:'btn btn-primary'  %>
+<%=  link_to "Cancel" , admin_categories_path, class:'btn btn-default' %>
+<%end%> <!-- end Do f -->

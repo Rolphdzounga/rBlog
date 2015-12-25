@@ -1,0 +1,28 @@
+<%= form_for [@user] do |f| %>
+<% if @user.errors.any? %>
+	<% @user.errors.full_messages.each do |m| %>
+		<div class="alert alert-danger"><%= m %></div>
+	<%end%> <!-- end Do m -->
+<%end%> <!-- end If -->
+<div >
+	<%= f.label :'Nom Utilisateur' %>
+	<%= f.text_field :username,class:'form-control', placeholder:'Entrez votre Nom et Prénom' ,autofocus: true %>
+</div>
+
+<div >
+	<%= f.label :Email %>
+	<%= f.email_field :email,class:'form-control' ,placeholder:'Entrez votre adresse mail' ,autofocus: true%>
+</div>
+
+<div >
+	<%= f.label :'Mot de passe' %>
+	<%= f.password_field :password,class:'form-control', placeholder:'Entrez votre Mot de Passe', autofocus: true%>
+</div>
+
+
+<br>
+
+<div ><%= f.submit "Valider" , class:'btn btn-primary'  %>
+	<%=  link_to "Annuler" , usrs_path, class:'btn btn-default' %></div>
+<%end%> <!-- end Do f -->
+

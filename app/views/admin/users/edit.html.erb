@@ -1,0 +1,32 @@
+<h2>Mise à Jour Paramettres User</h2>
+<%= form_for [:admin, @user] do |f| %>
+<% if @user.errors.any? %>
+	<% @user.errors.full_messages.each do |m| %>
+		<div class="alert alert-danger"><%= m %></div>
+	<%end%> <!-- end Do m -->
+<%end%> <!-- end If -->
+<div class="form-group col-md-4 pull-left">
+	<%= f.label :'Nom Utilisateur' %>
+	<%= f.text_field :name,class:'form-control' %>
+</div>
+
+<div class="form-group col-md-4 pull-left">
+	<%= f.label :Email %>
+	<%= f.text_field :email,class:'form-control' %>
+</div>
+
+<div class="form-group col-md-4 pull-left">
+	<%= f.label :'Mot de passe' %>
+	<%= f.password_field :password,class:'form-control' %>
+</div>
+
+<div class="form-group col-md-4 pull-left">
+	<%= f.label :password_confirmation %>
+	<%= f.password_field :password_confirmation,class:'form-control' %>
+</div>
+<br>
+
+<div class="form-group col-md-4 pull-right"><%= f.submit "Submit" , class:'btn btn-primary'  %>
+	<%=  link_to "Cancel" , admin_users_path, class:'btn btn-default' %></div>
+<%end%> <!-- end Do f -->
+

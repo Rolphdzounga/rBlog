@@ -1,0 +1,28 @@
+
+<h2 class="page-header">Manage Users  
+<%=  link_to "Add New" , new_admin_user_path , class:"btn btn-success pull-right" %>
+</h2>
+<%if @users.exists? %>
+<table class="table table-striped">
+	<tr>
+		<th>Nom Utilisateur</th>
+		<th>Email</th>
+		<th>Created Date</th>
+		<th>Actions</th>
+	</tr>
+	<% @users.each do |c| %>
+	<tr>
+		<td><%=c.name%></td>
+		<td><%=c.email%></td>
+		<td><%= c.created_at.to_time.strftime('%e %B à %l:%M %p')%></td>			
+		<td>
+			<%= link_to "Edit" , edit_admin_user_path(c) , class:'btn btn-primary' %>  
+		<%= link_to "Delete" , admin_user_path(c) , class:'btn btn-danger' , method: :delete , data: {confirm:"Confirmez cette suppression..."} %></td>
+		
+	</tr>
+	<%end%>
+</table>
+<%= will_paginate @users %>
+<%else%>
+	<p>Aucun Utilisateur</p>
+<%end%>
